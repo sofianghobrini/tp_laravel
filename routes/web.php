@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('modules', ModeleController::class);
-Route::resource('evaluations', EvaluationController::class);
+Route::resource('modele', ModeleController::class);
+Route::resource('evaluation', EvaluationController::class);
 Route::resource('evaluation-eleves', EleveController::class);
 
 Route::get('/eleves/{id}/notes', [EleveController::class, 'showNotes'])->name('eleve.notes');
