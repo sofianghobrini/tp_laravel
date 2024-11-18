@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class EleveController extends Controller
 {
+    public function index(){
+        $eleves = Eleve::paignate(10);
+        return view('eleves.index', compact('eleves'));
+    }
     // Afficher toutes les notes d'un élève et calculer sa moyenne
     public function showNotes($id)
     {

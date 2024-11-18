@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
 {
+    public function index(){
+        $evaluations = Evaluation::all();
+        return view('evaluation.index', compact('evaluations'));
+    }
     // Afficher toutes les notes d'une évaluation
     public function showNotes($id)
     {
@@ -22,7 +26,7 @@ class EvaluationController extends Controller
         $notes = $evaluation->evaluationEleves;
 
         // Retourner la vue avec les notes
-        return view('evaluation.notes', compact('notes'));
+        return view('evaluations.notes', compact('notes'));
     }
 
     // Lister les élèves qui n'ont pas eu la moyenne dans une évaluation
@@ -39,6 +43,6 @@ class EvaluationController extends Controller
         $elevesSansMoyenne = $evaluation->evaluationEleves->where('note', '<', 10);
 
         // Retourner la vue avec la liste des élèves sans moyenne
-        return view('evaluation.eleves-sans-moyenne', compact('elevesSansMoyenne'));
+        return view('evaluations.eleves-sans-moyenne', compact('elevesSansMoyenne'));
     }
 }
