@@ -11,7 +11,7 @@ class ModeleController extends Controller
     {
         // Récupérer les modules avec une pagination
         $modules = Module::paginate(10); // Corrigé "paignate" -> "paginate"
-        return view('module.index', compact('modules')); // Pluriel pour la variable dans la vue
+        return view('modele.index', compact('modules')); // Pluriel pour la variable dans la vue
     }
 
     /**
@@ -43,7 +43,7 @@ class ModeleController extends Controller
         Module::create($request->only(['code', 'nom', 'coefficient']));
 
         // Rediriger avec un message de succès
-        return redirect()->route('modules.index')->with('success', 'Module créé avec succès.');
+        return redirect()->route('modele.index')->with('success', 'Module créé avec succès.');
     }
 
     /**
@@ -55,7 +55,7 @@ class ModeleController extends Controller
     public function show($id)
     {
         $module = Module::findOrFail($id); // Trouver le module ou générer une erreur 404
-        return view('module.show', compact('module'));
+        return view('modele.show', compact('module'));
     }
 
     /**
@@ -67,7 +67,7 @@ class ModeleController extends Controller
     public function edit($id)
     {
         $module = Module::findOrFail($id);
-        return view('module.edit', compact('module'));
+        return view('modele.edit', compact('module'));
     }
 
     /**
@@ -91,7 +91,7 @@ class ModeleController extends Controller
         $module->update($request->only(['code', 'nom', 'coefficient']));
 
         // Rediriger avec un message de succès
-        return redirect()->route('modules.index')->with('success', 'Module mis à jour avec succès.');
+        return redirect()->route('modele.index')->with('success', 'Module mis à jour avec succès.');
     }
 
     /**
@@ -105,6 +105,6 @@ class ModeleController extends Controller
         $module = Module::findOrFail($id);
         $module->delete();
 
-        return redirect()->route('modules.index')->with('success', 'Module supprimé avec succès.');
+        return redirect()->route('modele.index')->with('success', 'Module supprimé avec succès.');
     }
 }
