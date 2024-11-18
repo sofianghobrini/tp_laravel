@@ -26,7 +26,7 @@ class EvaluationController extends Controller
         $notes = $evaluation->evaluationEleves;
 
         // Retourner la vue avec les notes
-        return view('evaluations.notes', compact('notes'));
+        return view('evaluation.notes', compact('notes'));
     }
 
     // Lister les élèves qui n'ont pas eu la moyenne dans une évaluation
@@ -43,6 +43,6 @@ class EvaluationController extends Controller
         $elevesSansMoyenne = $evaluation->evaluationEleves->where('note', '<', 10);
 
         // Retourner la vue avec la liste des élèves sans moyenne
-        return view('evaluations.eleves-sans-moyenne', compact('elevesSansMoyenne'));
+        return view('evaluation.eleves-sans-moyenne', compact('elevesSansMoyenne'));
     }
 }

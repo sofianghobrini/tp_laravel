@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ModeleController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EvaluationController;
 
@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('modules', ModuleController::class);
+Route::resource('modules', ModeleController::class);
 Route::resource('evaluations', EvaluationController::class);
 Route::resource('evaluation-eleves', EleveController::class);
 
