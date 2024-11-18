@@ -1,48 +1,81 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EvaluationController extends Controller
 {
-    public function index(){
-        $evaluations = Evaluation::all();
-        return view('evaluation.index', compact('evaluations'));
-    }
-    // Afficher toutes les notes d'une évaluation
-    public function showNotes($id)
+    public function index()
     {
-        // Trouver l'évaluation par son ID
-        $evaluation = Evaluation::find($id);
-
-        if (!$evaluation) {
-            return redirect()->back()->with('error', 'Évaluation non trouvée');
-        }
-
-        // Obtenir toutes les notes des élèves pour cette évaluation
-        $notes = $evaluation->evaluationEleves;
-
-        // Retourner la vue avec les notes
-        return view('evaluation.notes', compact('notes'));
+        $evaluations = Evaluation::with('module')->paginate(10);
+        return view('evaluations.index', compact('evaluations'));
     }
 
-    // Lister les élèves qui n'ont pas eu la moyenne dans une évaluation
-    public function elevesSansMoyenne($id)
+    public function create()
     {
-        // Trouver l'évaluation par son ID
-        $evaluation = Evaluation::find($id);
+        $modules = Module::all(); // Récupère tous les modules pour le formulaire
+        return view('evaluations.create', compact('modules'));
+    }
 
-        if (!$evaluation) {
-            return redirect()->back()->with('error', 'Évaluation non trouvée');
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'module_id' => 'required|exists:modules,id',
+            'titre' => 'required|string|max:255',
+            'date' => 'required|date',
+            'coefficient' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Obtenir les élèves qui n'ont pas eu la moyenne (note < 10)
-        $elevesSansMoyenne = $evaluation->evaluationEleves->where('note', '<', 10);
+        Evaluation::create($request->all());
 
-        // Retourner la vue avec la liste des élèves sans moyenne
-        return view('evaluation.eleves-sans-moyenne', compact('elevesSansMoyenne'));
+        return redirect()->route('evaluations.index')->with('success', 'Évaluation ajoutée avec succès!');
+    }
+
+    public function show($id)
+    {
+        $evaluation = Evaluation::with('module')->findOrFail($id);
+        return view('evaluations.show', compact('evaluation'));
+    }
+
+    public function edit($id)
+    {
+        $evaluation = Evaluation::findOrFail($id);
+        $modules = Module::all();
+        return view('evaluations.edit', compact('evaluation', 'modules'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'module_id' => 'required|exists:modules,id',
+            'titre' => 'required|string|max:255',
+            'date' => 'required|date',
+            'coefficient' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $evaluation = Evaluation::findOrFail($id);
+        $evaluation->update($request->all());
+
+        return redirect()->route('evaluations.index')->with('success', 'Évaluation mise à jour avec succès!');
+    }
+
+    public function destroy($id)
+    {
+        $evaluation = Evaluation::findOrFail($id);
+        $evaluation->delete();
+
+        return redirect()->route('evaluations.index')->with('success', 'Évaluation supprimée avec succès!');
     }
 }

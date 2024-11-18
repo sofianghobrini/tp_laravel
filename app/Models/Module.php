@@ -11,4 +11,8 @@ class Module extends Model
 
     protected $fillable = ['code', 'nom', 'coefficient'];
     //use HasFactory;
+
+    public function evaluation(){
+        return $this->hasMany(Evaluation::class);
+    }
 }

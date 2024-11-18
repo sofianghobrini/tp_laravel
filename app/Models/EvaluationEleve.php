@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluationEleve extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['evaluation_id', 'eleve_id', 'note'];
+    protected $fillable = [
+        'evaluation_id',
+        'eleve_id',
+        'note',
+    ];
 
     public function evaluation()
     {
@@ -20,5 +22,4 @@ class EvaluationEleve extends Model
     {
         return $this->belongsTo(Eleve::class);
     }
-    //use HasFactory;
 }
