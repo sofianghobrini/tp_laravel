@@ -24,6 +24,7 @@ class EvaluationController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'module_id' => 'required|exists:modules,id',
             'titre' => 'required|string|max:255',
             'date' => 'required|date',
             'coefficient' => 'required|numeric',
@@ -54,6 +55,7 @@ class EvaluationController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'module_id' => 'required|exists:modules,id',
             'titre' => 'required|string|max:255',
             'date' => 'required|date',
             'coefficient' => 'required|numeric',

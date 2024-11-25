@@ -6,6 +6,15 @@
 <form action="{{ route('evaluations.store') }}" method="POST">
     @csrf
     <div class="form-group">
+        <label for="module_id">Module</label>
+        <select name="module_id" id="module_id" class="form-control">
+            <option value="">
+            @foreach($modules as $module)
+            <option value="{{ $module->id }}">{{ $module->nom }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         <label for="titre">Titre de l'évaluation</label>
         <input type="text" name="titre" id="titre" class="form-control" required>
     </div>

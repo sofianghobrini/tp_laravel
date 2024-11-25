@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('eleve_id');
-            $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade');
+            $table->foreignId('module_id')->constrained('modules'); // Relation avec les modules
             $table->date('date');         // Date de l'évaluation
             $table->string('titre');      // Titre de l'évaluation
             $table->float('coefficient'); // Coefficient de l'évaluation
