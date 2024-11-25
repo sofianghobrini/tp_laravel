@@ -17,16 +17,16 @@
     <form action="{{ route('eleves.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="nom" class="form-label">Nom :</label>
-            <input type="text" id="nom" name="nom" class="form-control" value="{{ old('nom') }}" required>
+            <label for="name" class="form-label">Nom :</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
         <div class="mb-3">
-            <label for="prenom" class="form-label">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" class="form-control" value="{{ old('prenom') }}" required>
+            <label for="prénom" class="form-label">Prénom :</label>
+            <input type="text" id="prénom" name="prénom" class="form-control" value="{{ old('prénom') }}" required>
         </div>
         <div class="mb-3">
-            <label for="dateNaissance" class="form-label">Date de naissance :</label>
-            <input type="date" id="dateNaissance" name="dateNaissance" class="form-control" value="{{ old('dateNaissance') }}" required>
+            <label for="date_naissance" class="form-label">Date de naissance :</label>
+            <input type="date" id="date_naissance" name="date_naissance" class="form-control" value="{{ old('date_naissance') }}" required>
         </div>
         <div class="mb-3">
             <label for="numéro_étudiant" class="form-label">Numéro étudiant :</label>
