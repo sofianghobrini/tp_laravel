@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('module_id')->constrained('modules'); // Relation avec les modules
             $table->unsignedBigInteger('eleve_id');
             $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade');
             $table->date('date');         // Date de l'évaluation
