@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\EleveController;
@@ -20,8 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('eleves', EleveController::class);
 Route::resource('module', ModuleController::class);
-Route::resource('evaluation', EvaluationController::class);
+Route::resource('evaluations', EvaluationController::class);
 Route::resource('evaluationEleve', EleveController::class);
 
 Route::get('/notes/evaluation/{id}', [NotesController::class, 'showEvaluation'])->name('notes.evaluation');
