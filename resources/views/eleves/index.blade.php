@@ -18,9 +18,9 @@
         <tbody>
         @foreach ($eleves as $eleve)
         <tr>
-            <td>{{ $eleve->nom }}</td>
-            <td>{{ $eleve->prenom }}</td>
-            <td>{{ $eleve->dateNaissance }}</td>
+            <td>{{ $eleve->name }}</td>
+            <td>{{ $eleve->prénom }}</td>
+            <td>{{ $eleve->date_naissance }}</td>
             <td>{{ $eleve->numéro_étudiant }}</td>
             <td>{{ $eleve->email }}</td>
             <td>
