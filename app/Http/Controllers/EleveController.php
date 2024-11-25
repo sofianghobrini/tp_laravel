@@ -91,8 +91,7 @@ class EleveController extends Controller
             'prénom' => 'required|string|max:255',
             'date_naissance' => 'required|date',
             'numéro_étudiant' => 'required|string|unique:eleves,numéro_étudiant',
-            'email' => 'required|email|unique:eleves,email|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'email' => 'required|email|unique:eleves,email|max:255'
         ]);
 
         if ($validator->fails()) {
