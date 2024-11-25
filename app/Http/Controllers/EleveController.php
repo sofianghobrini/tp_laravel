@@ -106,8 +106,7 @@ class EleveController extends Controller
             'prénom' => $request->prénom,
             'date_naissance' => $request->date_naissance,
             'numéro_étudiant' => $request->numéro_étudiant,
-            'email' => $request->email,
-            'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null
+            'email' => $request->email
         ]);
 
         return redirect()->route('eleves.create')->with('success', 'Élève ajouté avec succès!');
