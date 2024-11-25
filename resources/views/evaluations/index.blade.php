@@ -8,7 +8,6 @@
     <tr>
         <th>Titre</th>
         <th>Date</th>
-        <th>Module</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -17,7 +16,6 @@
     <tr>
         <td>{{ $evaluation->titre }}</td>
         <td>{{ $evaluation->date }}</td>
-        <td>{{ $evaluation->module->nom }}</td>
         <td>
             <a href="{{ route('evaluations.edit', $evaluation->id) }}">Modifier</a>
             <form action="{{ route('evaluations.destroy', $evaluation->id) }}" method="POST">

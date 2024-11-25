@@ -7,16 +7,6 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="module_id">Module</label>
-        <select name="module_id" id="module_id" class="form-control">
-            @foreach($modules as $module)
-            <option value="{{ $module->id }}" {{ $evaluation->module_id == $module->id ? 'selected' : '' }}>
-                {{ $module->nom }}
-            </option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group">
         <label for="titre">Titre de l'évaluation</label>
         <input type="text" name="titre" id="titre" class="form-control" value="{{ $evaluation->titre }}" required>
     </div>

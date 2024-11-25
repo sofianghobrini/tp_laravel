@@ -6,7 +6,6 @@
 <div class="card">
     <div class="card-header">Informations sur l'évaluation</div>
     <div class="card-body">
-        <p><strong>Module :</strong> {{ $evaluation->module->nom }}</p>
         <p><strong>Titre :</strong> {{ $evaluation->titre }}</p>
         <p><strong>Date :</strong> {{ $evaluation->date }}</p>
         <p><strong>Coefficient :</strong> {{ $evaluation->coefficient }}</p>
