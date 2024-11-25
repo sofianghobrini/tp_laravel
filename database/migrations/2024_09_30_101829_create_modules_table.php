@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');      // Code du module
-            $table->string('nom');       // Nom du module
-            $table->float('coefficient'); // Coefficient du module
-            $table->timestamps();
+        Schema::create('evaluations', function (Blueprint $table) {
+            $table->id(); // ID unique pour chaque évaluation
+            $table->string('titre'); // Titre de l'évaluation
+            $table->date('date'); // Date de l'évaluation
+            $table->float('coefficient'); // Coefficient de l'évaluation
+            $table->timestamps(); // Horodatage (created_at et updated_at)
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('evaluations');
     }
 };
