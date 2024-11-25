@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id(); // ID de l'élève
             $table->string('nom'); // Nom de l'élève
             $table->string('prenom'); // Prénom de l'élève
+            $table->date('dateNaissance');
+            $table->string('numéro_étudiant');
             $table->timestamps(); // Horodatage
         });
     }

@@ -15,17 +15,21 @@
 
 <form action="{{ route('eleves.store') }}" method="POST">
     @csrf
-    <div class="form-group">
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+    <div class="form-group mb-3">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" class="form-control" value="{{ old('nom') }}" required>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-3">
         <label for="prenom">Prénom :</label>
         <input type="text" id="prenom" name="prenom" class="form-control" value="{{ old('prenom') }}" required>
     </div>
-    <div class="form-group">
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
+    <div class="form-group mb-3">
+        <label for="dateNaissance">Date de naissance :</label>
+        <input type="date" id="dateNaissance" name="dateNaissance" class="form-control" value="{{ old('dateNaissance') }}" required>
+    </div>
+    <div class="form-group mb-3">
+        <label for="numéro_étudiant">Numéro étudiant :</label>
+        <input type="text" id="numéro_étudiant" name="numéro_étudiant" class="form-control" value="{{ old('numéro_étudiant') }}" required>
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>

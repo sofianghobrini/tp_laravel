@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('eleves', EleveController::class);
-Route::resource('module', ModuleController::class);
+Route::resource('modules', ModuleController::class);
 Route::resource('evaluations', EvaluationController::class);
 Route::resource('evaluationEleve', EleveController::class);
 
