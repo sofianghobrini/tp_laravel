@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('evaluation_eleves')) {
+        if (!Schema::hasTable('evaluations')) {
             Schema::create('evaluations', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('module_id')->constrained()->onDelete('cascade'); // Relation avec les modules
