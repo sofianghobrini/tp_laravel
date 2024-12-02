@@ -41,8 +41,6 @@
             <label for="image">Image :</label>
             <input type="file" name="image" id="image">
         </div>
-        <label for="image">Image :</label>
-        <input type="file" name="image" id="image">
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
 </div>
