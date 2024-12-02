@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EvaluationController;
-
+use App\Http\Controllers\EvaluationEleveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
