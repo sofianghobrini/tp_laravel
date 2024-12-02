@@ -21,12 +21,8 @@ return new class extends Migration
 
                 $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
                 $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
-                /*$table->id();
-                $table->foreignId('eleve_id')->constrained()->onDelete('cascade');
-                $table->foreignId('evaluation_id')->constrained()->onDelete('cascade');
-                $table->double('note', 8, 2); // Note des élèves
-                $table->timestamps();*/
             });
+
         }
     }
 
