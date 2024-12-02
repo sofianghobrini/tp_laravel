@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evaluations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('module_id')->constrained()->onDelete('cascade'); // Relation avec les modules
-            $table->date('date');         // Date de l'évaluation
-            $table->string('titre');      // Titre de l'évaluation
-            $table->float('coefficient'); // Coefficient de l'évaluation
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('evaluation_eleves')) {
+            Schema::create('evaluations', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('module_id')->constrained()->onDelete('cascade'); // Relation avec les modules
+                $table->date('date');         // Date de l'évaluation
+                $table->string('titre');      // Titre de l'évaluation
+                $table->float('coefficient'); // Coefficient de l'évaluation
+                $table->timestamps();
+            });
+        }
     }
 
     /**
