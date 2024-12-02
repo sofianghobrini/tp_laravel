@@ -37,6 +37,12 @@
             <label for="email" class="form-label">Email :</label>
             <input type="email" id="email" name="email" class="form-control" value="{{ old('email', $eleve->email) }}" required>
         </div>
+        <div class="mb-3">
+            <label for="image">Image :</label>
+            <input type="file" name="image" id="image">
+        </div>
+        <label for="image">Image :</label>
+        <input type="file" name="image" id="image">
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
 </div>

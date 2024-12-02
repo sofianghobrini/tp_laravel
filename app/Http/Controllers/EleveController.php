@@ -45,6 +45,21 @@ class EleveController extends Controller
         }
 
         $eleve = Eleve::findOrFail($id);
+        $eleve->update($request->only(['name', 'prénom', 'date_naissance', 'numéro_étudiant', 'email']));
+
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($eleve->image) {
+                Storage::delete('public/' . $eleve->image);
+            }
+
+            // Stocker la nouvelle image
+            $imagePath = $request->file('image')->store('images', 'public');
+            $eleve->image = $imagePath;
+            $eleve->save();
+        }
+
+        $eleve = Eleve::findOrFail($id);
         $eleve->update([
             'name' => $request->name,
             'prénom' => $request->prénom,
@@ -91,7 +106,8 @@ class EleveController extends Controller
             'prénom' => 'required|string|max:255',
             'date_naissance' => 'required|date',
             'numéro_étudiant' => 'required|string|unique:eleves,numéro_étudiant',
-            'email' => 'required|email|unique:eleves,email|max:255'
+            'email' => 'required|email|unique:eleves,email|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -101,12 +117,14 @@ class EleveController extends Controller
         }
 
         // Enregistrer l'élève
+        $imagePath = $request->file('image')->store('images', 'public');;
         Eleve::create([
             'name' => $request->name,
             'prénom' => $request->prénom,
             'date_naissance' => $request->date_naissance,
             'numéro_étudiant' => $request->numéro_étudiant,
-            'email' => $request->email
+            'email' => $request->email,
+            'image' => $imagePath
         ]);
 
         return redirect()->route('eleves.create')->with('success', 'Élève ajouté avec succès!');

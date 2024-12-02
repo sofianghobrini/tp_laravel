@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date_naissance');
             $table->string('numéro_étudiant')->unique();
             $table->string('email')->unique();
+            $table->string('image');
             $table->timestamps(); // Horodatage
         });
     }
