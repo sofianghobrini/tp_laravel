@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evaluations', function (Blueprint $table) {
-            $table->id(); // ID unique pour chaque évaluation
-            $table->string('titre'); // Titre de l'évaluation
-            $table->date('date'); // Date de l'évaluation
-            $table->float('coefficient'); // Coefficient de l'évaluation
-            $table->timestamps(); // Horodatage (created_at et updated_at)
-        });
+        if (!Schema::hasTable('modules')) {
+            Schema::create('modules', function (Blueprint $table) {
+                $table->id(); // ID unique pour chaque évaluation
+                $table->string('titre'); // Titre de l'évaluation
+                $table->date('date'); // Date de l'évaluation
+                $table->float('coefficient'); // Coefficient de l'évaluation
+                $table->timestamps(); // Horodatage (created_at et updated_at)
+            });
+        }
     }
 
     /**
