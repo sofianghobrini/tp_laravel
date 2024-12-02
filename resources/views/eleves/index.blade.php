@@ -23,7 +23,13 @@
             <td>{{ $eleve->date_naissance }}</td>
             <td>{{ $eleve->numéro_étudiant }}</td>
             <td>{{ $eleve->email }}</td>
-            <td>{{ $eleve->image }}</td>
+            <td>
+                @if($eleve->image)
+                <img src="{{ Storage::url($eleve->image) }}" alt="Image de {{ $eleve->name }}" class="img-thumbnail" width="100">
+                @else
+                Pas d'image
+                @endif
+            </td>
             <td>
                 <a href="{{ route('eleves.show', $eleve->id) }}" class="btn btn-info btn-sm">Voir</a>
                 <a href="{{ route('eleves.edit', $eleve->id) }}" class="btn btn-primary btn-sm">Modifier</a>

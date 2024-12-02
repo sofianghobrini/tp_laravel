@@ -9,7 +9,15 @@
         <li class="list-group-item"><strong>Date de naissance :</strong> {{ $eleve->date_naissance }}</li>
         <li class="list-group-item"><strong>Numéro étudiant :</strong> {{ $eleve->numéro_étudiant }}</li>
         <li class="list-group-item"><strong>Email :</strong> {{ $eleve->email }}</li>
-        <li class="list-group-item"><strong>Image :</strong> {{ $eleve->image }}</li>
+        <li class="list-group-item">
+            <strong>Image :</strong>
+            @if($eleve->image)
+            <img src="{{ Storage::url($eleve->image) }}" alt="Image de {{ $eleve->name }}" class="img-thumbnail" width="200">
+            @else
+            Pas d'image
+            @endif
+        </li>
+
     </ul>
     <a href="{{ route('eleves.index') }}" class="btn btn-secondary mt-3">Retour</a>
 </div>
