@@ -78,7 +78,6 @@ class EvaluationEleveController extends Controller
     {
         // Récupérer la note spécifiée
         $evaluationEleve = EvaluationEleve::findOrFail($id);
-
         // Récupérer les données associées (évaluation et élève)
         $evaluation = $evaluationEleve->evaluation; // Relation définie dans le modèle
         $eleve = $evaluationEleve->eleve; // Relation définie dans le modèle

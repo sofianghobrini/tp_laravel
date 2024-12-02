@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::resource('eleves', EleveController::class);
 Route::resource('modules', ModuleController::class);
 Route::resource('evaluations', EvaluationController::class);
-Route::resource('evaluationEleve', EleveController::class);
+Route::resource('evaluationEleve', EvaluationEleveController::class);
 
 Route::get('/notes/evaluation/{id}', [NotesController::class, 'showEvaluation'])->name('notes.evaluation');
 Route::get('/notes/eleve/{id}', [NotesController::class, 'showEleve'])->name('notes.eleve');
