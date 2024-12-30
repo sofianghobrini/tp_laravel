@@ -6,9 +6,15 @@ use App\Models\Module;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        // Applique le middleware can:is-prof pour sécuriser les routes du contrôleur
+        $this->middleware('can:is-prof');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -103,4 +109,5 @@ class ModuleController extends Controller
 
         return redirect()->route('modules.index')->with('success', 'Élève supprimé avec succès!');
     }
+
 }

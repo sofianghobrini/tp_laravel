@@ -14,15 +14,20 @@ return new class extends Migration
         if (!Schema::hasTable('evaluation_eleves')) {
             Schema::create('evaluation_eleves', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('eleve_id'); // Type compatible
-                $table->unsignedBigInteger('evaluation_id'); // Type compatible
+                $table->unsignedBigInteger('eleve_id');
+                $table->unsignedBigInteger('evaluation_id');
                 $table->float('note')->nullable();
                 $table->timestamps();
 
-                $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
-                $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
-            });
+                // Vérifie l'existence des tables avant d'ajouter les clés étrangères
+                if (Schema::hasTable('eleves')) {
+                    $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
+                }
 
+                if (Schema::hasTable('evaluations')) {
+                    $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('cascade');
+                }
+            });
         }
     }
 

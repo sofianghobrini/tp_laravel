@@ -6,8 +6,15 @@ use App\Models\EvaluationEleve;
 use App\Models\Eleve;
 use Illuminate\Http\Request;
 
+
 class NotesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:is-prof');
+        $this->middleware('can:is-eleve')->only(['showInsuffisants', 'showEvaluation', 'showEleve']);
+    }
     // Affiche toutes les notes d'une évaluation
     public function showEvaluation($id)
     {
@@ -18,10 +25,17 @@ class NotesController extends Controller
     // Affiche toutes les notes d'un élève et calcule la moyenne
     public function showEleve($id)
     {
-        $eleve = Eleve::find($id);
+        dd(auth()->user());
+        // Récupère l'élève avec l'ID passé en paramètre
+        $eleve = Eleve::findOrFail($id);
+
+        // Récupère les notes de l'élève pour cette évaluation
         $notes = EvaluationEleve::where('eleve_id', $id)->get();
+
+        // Calcule la moyenne des notes
         $moyenne = $notes->avg('note');
 
+        // Retourne la vue avec l'élève, ses notes et sa moyenne
         return view('notes.eleve', compact('eleve', 'notes', 'moyenne'));
     }
 
@@ -34,4 +48,16 @@ class NotesController extends Controller
 
         return view('notes.insuffisants', compact('notes'));
     }
+    public function index()
+    {
+        // Récupère toutes les notes d'un élève ou d'une évaluation
+        $notes = EvaluationEleve::all();
+
+        // Calcule la moyenne des notes
+        $moyenne = $notes->avg('note');
+
+        // Retourne la vue avec les notes et la moyenne
+        return view('notes.index', compact('notes', 'moyenne'));
+    }
+
 }

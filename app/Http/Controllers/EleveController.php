@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Validator;use Illuminate\Support\Facades\Storage;
 
 class EleveController extends Controller
 {
+
+    public function __construct()
+    {
+        // Applique le middleware can:is-prof pour sécuriser les routes du contrôleur
+        $this->middleware('can:is-prof');
+        $this->middleware('can:is-eleve')->only(['show']);
+    }
     public function index()
     {
         $eleves = Eleve::paginate(10);

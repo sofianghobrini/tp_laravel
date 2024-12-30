@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class EvaluationController extends Controller
 {
+    public function __construct()
+    {
+        // Applique le middleware can:is-prof pour sécuriser les routes du contrôleur
+        $this->middleware('can:is-prof');
+        $this->middleware('can:is-eleve')->only(['show']);
+    }
     public function index()
     {
         $evaluations = Evaluation::with('module')->paginate(10);
