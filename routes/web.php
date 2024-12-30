@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvaluationEleveController;
@@ -70,7 +71,6 @@ Route::middleware('can:is-prof')->group(function () {
 // Groupe pour les élèves
 Route::middleware('can:is-eleve')->group(function (){
     // Consultation des modules (liste et détails uniquement)
-    Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
     Route::get('/modules/{id}', [ModuleController::class, 'show'])->name('modules.show');
 
     // Consultation des évaluations des élèves

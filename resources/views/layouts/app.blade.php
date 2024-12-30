@@ -29,8 +29,13 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div class="container mx-auto p-6">
+                    <div class="bg-white shadow-lg rounded-lg p-6">
+                        @yield('content')
+                    </div>
+                </div>
             </main>
+
         </div>
     </body>
 </html>

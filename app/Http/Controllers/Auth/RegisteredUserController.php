@@ -47,7 +47,16 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        if (Auth::check()) {
+            // Si l'utilisateur est connecté, rediriger vers le dashboard en fonction du rôle
+            if ($user->role == 'eleve') {
+                return redirect()->route('dashboard');  // Dashboard de l'élève
+            } elseif ($user->role == 'professeur') {
+                return redirect()->route('dashboard');  // Dashboard du professeur
+            }
+        }
+        // Si l'utilisateur n'est pas connecté, rediriger vers la page de login
+        return redirect()->route('login');
     }
+
 }
